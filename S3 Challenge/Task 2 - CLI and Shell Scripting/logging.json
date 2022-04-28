@@ -1,0 +1,10 @@
+
+## Enabling access log
+
+{
+      "LoggingEnabled": {
+          "TargetBucket": "epam-2",
+          "TargetPrefix": "epam-2/"
+       }
+   }
+

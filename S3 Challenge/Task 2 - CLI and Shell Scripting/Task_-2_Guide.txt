@@ -1,0 +1,41 @@
+Configuring AWS CLI with secret key and secret access key
+
+    1  aws configure
+
+Creating a script using Vim Editor
+
+    2  vim s3.sh
+
+Changing Script File Permissions
+
+    3  chmod 700 s3.sh
+	
+	#Script For Creating Buckets,Enabling Versioning and Enabling Access Log
+
+	#!/bin/bash
+	for i in {1..10}
+	do
+		aws s3api create-bucket --bucket "epam-$i" --region us-east-1
+	done
+
+	# Enable versioning
+	aws s3 put-bucket-versioning --bucket epam-5 --versioning-configuration MFADelete=Disabled,Status=Enabled
+
+	# Enable Access logs
+	aws s3api put-bucket-logging --bucket epam-2 --bucket-logging-status file://logging.json
+	
+Executing the Script
+ 
+   4  sh s3.sh
+
+Listing AWS Buckets
+   
+   5  aws s3 ls
+   
+Command For Uploading Data in each Bucket
+
+   6  aws s3 cp sample.mp4 s3://epam-1
+
+To make object public
+
+   7 aws s3 cp sample1.mp4 s3://epam-10 --acl public-read
